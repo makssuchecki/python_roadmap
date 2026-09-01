@@ -1,0 +1,49 @@
+pyproject.toml is a configuration file used by packaging tools,
+as well as other tools such as linters, type checkers, etc.
+
+There are three possible TOML tables in this file
+
+The [build-system] table
+allows to declare build backend you use and which other dependencies are needed
+
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+The [project] table is the format that most build backends use to specify
+your project's basic metadata (dependencies, name, etc.) 
+
+[project]
+name = "my-project"
+version = "0.1.0"
+dynamic = ["version]
+dependencies = [
+    "httpx",
+    "gidgethub[httpx]>4.0.0",
+    ...
+]
+readme = "README.md"
+authors = [
+    {name = "xyz", email="xyz@example.com"},
+    ...
+]
+license = "GPL-3.0-or-later"
+keywords = ["egg", "bacon", "sausage"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    ...
+]
+
+[project.urls]
+Homepage = "httpsL//example.com"
+
+[project.optional-dependencies]
+gui = ["PyQt5"]
+
+[project.scripts]
+spam-cli = "spam:main_cli"
+
+[project.gui-scripts]
+spam-gui = "spam:main_gui"
+
+The [tool] table has tool-specific subtables
